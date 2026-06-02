@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>enfermeramarina | Enfermería, Viajes y Letras</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #d62828;      /* Rojo suave educativo */
+            --accent: #ff007f;       /* Rosa fucsia vibrante (jersey) */
+            --accent-light: #fff0f5; /* Rosa muy claro para fondos */
+            --text-dark: #2b2d42;    /* Gris oscuro para legibilidad */
+            --text-light: #f8f9fa;   /* Blanco/Off-white */
+            --bg-clean: #ffffff;     /* Blanco puro */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-clean);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--text-light);
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 0, 127, 0.5);
+        }
+
+        .btn-alt {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-alt:hover {
+            background-color: var(--primary);
+            color: var(--text-light);
+            box-shadow: 0 4px 15px rgba(214, 40, 40, 0.3);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 50px;
+            position: relative;
+            color: var(--text-dark);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* Header & Nav */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-menu a {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #fff 60%, var(--accent-light) 100%);
+            min-height: calc(100vh - 80px);
+            display: flex;
+            align-items: center;
+            padding: 40px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 35px;
+        }
+
+        .hero-image-container {
+            position: relative;
+            justify-self: center;
+        }
+
+        .hero-img {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid var(--accent-light);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            outline: 3px solid var(--accent);
+        }
+
+        /* Sobre Mí */
+        .about {
+            background-color: var(--accent-light);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+            color: #4a4a4a;
+        }
+
+        .about-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: var(--bg-clean);
+            padding: 15px 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 0, 127, 0.1);
+        }
+
+        /* Divulgación */
+        .divulgacion-block {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: var(--text-light);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(214, 40, 40, 0.2);
+        }
+
+        .divulgacion-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .divulgacion-info p {
+            margin-bottom: 25px;
+            opacity: 0.9;
+        }
+
+        .divulgacion-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .insta-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            aspect-ratio: 1;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .divulgacion-block .btn {
+            background-color: var(--bg-clean);
+            color: var(--accent);
+            box-shadow: none;
+        }
+
+        /* Viajes */
+        .travel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .travel-card {
+            background-color: var(--bg-clean);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease;
+        }
+
+        .travel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .travel-img-placeholder {
+            height: 200px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: 500;
+            background: linear-gradient(45deg, #e0e0e0, #f5f5f5);
+        }
+
+        .travel-info {
+            padding: 25px;
+        }
+
+        .travel-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .travel-info p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .travel-link {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Escritora */
+        .book {
+            background-color: #fafafa;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .book-cover-placeholder {
+            aspect-ratio: 2/3;
+            background: linear-gradient(135deg, #2b2d42 0%, #1a1b29 100%);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 5px 5px 25px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+            border-left: 5px solid var(--primary);
+        }
+
+        .book-cover-placeholder h4 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .book-info h3 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .book-tag {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .book-info p {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 1.05rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--text-light);
+            text-align: center;
+            padding: 40px 0;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-grid, .book-grid, .divulgacion-block {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-image-container {
+                order: -1;
+            }
+            .nav-menu {
+                display: none;
+            }
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            .divulgacion-preview {
+                margin-top: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">enfermera<span>marina</span></a>
+            <ul class="nav-menu">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#divulgacion">Divulgación</a></li>
+                <li><a href="#viajes">Guías de Viaje</a></li>
+                <li><a href="#libro">Mi Libro</a></li>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Enfermería, viajes y letras: el mundo a través de mis ojos</h1>
+                <p>Educando a la población, inspirando a sanitarios y descubriendo cada rincón del planeta de forma activa y saludable.</p>
+                <a href="#divulgacion" class="btn">Explora mi mundo</a>
+            </div>
+            <div class="hero-image-container">
+                <img src="IMG_7824.jpg" alt="Marina - Enfermera Marina" class="hero-img">
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre-mi" class="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Mí</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    ¡Hola! Soy Marina. Entiendo la enfermería como una vocación que va más allá del hospital: educar y cuidar es mi motor. Pero cuando me quito el pijama sanitario, me convierto en una viajera empedernida con una libreta siempre a mano. ¡Te invito a acompañarme en esta aventura tridimensional!
+                </p>
+                <div class="about-badges">
+                    <div class="badge">⚡ Fan de Harry Potter</div>
+                    <div class="badge">🐾 Amante de los carlinos</div>
+                    <div class="badge">🌍 Viajera incansable</div>
+                    <div class="badge">✍️ Escritora de misterio</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="divulgacion">
+        <div class="container">
+            <div class="divulgacion-block">
+                <div class="divulgacion-info">
+                    <h3>Educación Sanitaria</h3>
+                    <p>A través de mis redes sociales busco empoderar a la población con contenido riguroso pero accesible, y a la vez, aportar un enfoque fresco e inspirador para otros profesionales de la salud.</p>
+                    <a href="https://instagram.com" target="_blank" class="btn">Sígueme en Instagram</a>
+                </div>
+                <div class="divulgacion-preview">
+                    <div class="insta-card">Canvas Rojos y Rosas</div>
+                    <div class="insta-card">Consejos de Salud</div>
+                    <div class="insta-card">Comunidad Sanitaria</div>
+                    <div class="insta-card">Educación de Impacto</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="viajes">
+        <div class="container">
+            <h2 class="section-title">Guías de Viaje</h2>
+            <div class="travel-grid">
+                <div class="travel-card">
+                    <div class="travel-img-placeholder">🗺️ Europa</div>
+                    <div class="travel-info">
+                        <h3>Rutas por Europa</h3>
+                        <p>Planes detallados, consejos de salud para el viajero y rincones mágicos que no te puedes perder.</p>
+                        <a href="#" class="travel-link">Leer guía →</a>
+                    </div>
+                </div>
+                <div class="travel-card">
+                    <div class="travel-img-placeholder">✈️ Escapadas</div>
+                    <div class="travel-info">
+                        <h3>El Botiquín del Viajero</h3>
+                        <p>Todo lo que necesitas llevar en tu mochila desde la perspectiva de una enfermera experta.</p>
+                        <a href="#" class="travel-link">Leer guía →</a>
+                    </div>
+                </div>
+                <div class="travel-card">
+                    <div class="travel-img-placeholder">🎒 Aventuras</div>
+                    <div class="travel-info">
+                        <h3>Viajar con Mascotas</h3>
+                        <p>Guía práctica para recorrer el mundo de forma segura junto a tus mejores amigos peludos.</p>
+                        <a href="#" class="travel-link">Leer guía →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="libro" class="book">
+        <div class="container">
+            <h2 class="section-title">Mi Faceta Escritora</h2>
+            <div class="book-grid">
+                <div class="book-cover-placeholder">
+                    <h4>Asesinato en Brandroust</h4>
+                    <small>Marina</small>
+                </div>
+                <div class="book-info">
+                    <span class="book-tag">Novela Ya Publicada</span>
+                    <h3>Asesinato en Brandroust</h3>
+                    <p>Adéntrate en una intriga fascinante donde los secretos mejor guardados salen a la luz. Una novela de misterio que te atrapará desde la primera página y te mantendrá en vilo tratando de encajar las piezas del rompecabezas.</p>
+                    <a href="#" class="btn btn-alt">Saber más sobre el libro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 enfermeramarina. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
